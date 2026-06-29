@@ -54,6 +54,5 @@ theme_override_font_sizes/font_size = 26
 [node name="BotonJuego3" type="Button" parent="VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(560, 80)
-text = "Juego 3  (Próximamente)"
-theme_override_font_sizes/font_size = 22
-disabled = true
+text = "Reacciona al Color"
+theme_override_font_sizes/font_size = 26

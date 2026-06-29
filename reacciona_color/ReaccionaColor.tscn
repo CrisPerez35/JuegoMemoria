@@ -1,0 +1,130 @@
+[gd_scene format=3 uid="uid://bp5hn7rc1qcj3"]
+
+[ext_resource type="Script" path="res://reacciona_color/ReaccionaColor.gd" id="1_rc"]
+
+[node name="ReaccionaColor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_rc")
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.06, 0.08, 0.18, 1.0)
+
+[node name="MainVBox" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 16.0
+offset_right = -20.0
+offset_bottom = -16.0
+theme_override_constants/separation = 16
+
+[node name="InfoBar" type="HBoxContainer" parent="MainVBox"]
+layout_mode = 2
+
+[node name="BotonMenuJuego" type="Button" parent="MainVBox/InfoBar"]
+layout_mode = 2
+custom_minimum_size = Vector2(110, 44)
+text = "≡ Menú"
+theme_override_font_sizes/font_size = 16
+
+[node name="LabelPuntaje" type="Label" parent="MainVBox/InfoBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Puntaje: 0"
+theme_override_font_sizes/font_size = 22
+
+[node name="LabelVidas" type="Label" parent="MainVBox/InfoBar"]
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 2
+text = "♥ ♥ ♥"
+theme_override_font_sizes/font_size = 22
+theme_override_colors/font_color = Color(1.0, 0.30, 0.35, 1.0)
+
+[node name="ObjetivoSection" type="VBoxContainer" parent="MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LabelObjetivoTexto" type="Label" parent="MainVBox/ObjetivoSection"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "Toca cuando aparezca:"
+theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(0.75, 0.80, 0.95, 1.0)
+
+[node name="CenterRectObjetivo" type="CenterContainer" parent="MainVBox/ObjetivoSection"]
+layout_mode = 2
+
+[node name="ColorRectObjetivo" type="ColorRect" parent="MainVBox/ObjetivoSection/CenterRectObjetivo"]
+layout_mode = 2
+custom_minimum_size = Vector2(130, 130)
+color = Color(0.9, 0.15, 0.15, 1.0)
+
+[node name="LabelNombreObjetivo" type="Label" parent="MainVBox/ObjetivoSection"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "ROJO"
+theme_override_font_sizes/font_size = 36
+
+[node name="CenterBoton" type="CenterContainer" parent="MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BotonColor" type="Button" parent="MainVBox/CenterBoton"]
+layout_mode = 2
+custom_minimum_size = Vector2(560, 380)
+text = ""
+
+[node name="TimerCambio" type="Timer" parent="."]
+one_shot = true
+
+[node name="GameOverPanel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+visible = false
+
+[node name="VBoxCenter" type="VBoxContainer" parent="GameOverPanel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -260.0
+offset_right = 250.0
+offset_bottom = 260.0
+theme_override_constants/separation = 20
+
+[node name="LabelGameOver" type="Label" parent="GameOverPanel/VBoxCenter"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "¡Game Over!"
+theme_override_font_sizes/font_size = 54
+theme_override_colors/font_color = Color(1.0, 0.3, 0.3, 1.0)
+
+[node name="LabelPuntajeFinal" type="Label" parent="GameOverPanel/VBoxCenter"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "Puntaje: 0"
+theme_override_font_sizes/font_size = 30
+
+[node name="LabelMaximo" type="Label" parent="GameOverPanel/VBoxCenter"]
+layout_mode = 2
+horizontal_alignment = 1
+text = "Mejor: 0"
+theme_override_font_sizes/font_size = 26
+theme_override_colors/font_color = Color(0.95, 0.85, 0.20, 1.0)
+
+[node name="BotonReintentar" type="Button" parent="GameOverPanel/VBoxCenter"]
+layout_mode = 2
+custom_minimum_size = Vector2(400, 72)
+text = "Reintentar"
+theme_override_font_sizes/font_size = 24
+
+[node name="BotonMenu" type="Button" parent="GameOverPanel/VBoxCenter"]
+layout_mode = 2
+custom_minimum_size = Vector2(400, 72)
+text = "Menú Principal"
+theme_override_font_sizes/font_size = 24
