@@ -12,7 +12,8 @@ const TIEMPO_ILUMINAR_BASE   := 2.5    # segundos visibles en nivel 1
 const TIEMPO_ILUMINAR_MIN    := 0.6    # mínimo de tiempo visible
 const REDUCCION_TIEMPO       := 0.05   # reducción por nivel
 const PUNTOS_POR_ACIERTO     := 10     # puntos al acertar una celda
-const TAMANO_CELDA           := 90.0   # píxeles por celda (cuadrado)
+const TAMANO_CELDA_MAX       := 120.0  # tamaño máximo de celda (se calcula dinámicamente)
+const TAMANO_CELDA_MIN       := 50.0   # tamaño mínimo de celda
 const SEP_GRILLA             := 8      # separación entre celdas
 
 # =============================================================
@@ -37,6 +38,7 @@ var tile_escena := preload("res://mosaico_memoria/Tile.tscn")
 # =============================================================
 # REFERENCIAS A NODOS
 # =============================================================
+@onready var boton_menu_juego:    Button        = $MainVBox/InfoBar/BotonMenuJuego
 @onready var label_nivel:         Label         = $MainVBox/InfoBar/LabelNivel
 @onready var label_puntaje:       Label         = $MainVBox/InfoBar/LabelPuntaje
 @onready var label_mensaje:       Label         = $MainVBox/LabelMensaje
@@ -49,6 +51,7 @@ var tile_escena := preload("res://mosaico_memoria/Tile.tscn")
 @onready var boton_menu:          Button        = $GameOverPanel/VBoxCenter/BotonMenu
 
 func _ready() -> void:
+	boton_menu_juego.pressed.connect(_ir_al_menu)
 	boton_reintentar.pressed.connect(_reiniciar_juego)
 	boton_menu.pressed.connect(_ir_al_menu)
 	timer_iluminar.timeout.connect(_apagar_grilla)
@@ -166,6 +169,13 @@ func _game_over() -> void:
 # CONSTRUCCIÓN DE LA GRILLA
 # =============================================================
 
+# Calcula el tamaño de celda según el ancho del viewport (portrait-first)
+func _tamano_celda_actual() -> float:
+	var n := _tamano_grilla_actual()
+	var ancho := get_viewport_rect().size.x - 32.0  # 16px de margen a cada lado
+	var celda := (ancho - SEP_GRILLA * (n - 1)) / n
+	return clampf(celda, TAMANO_CELDA_MIN, TAMANO_CELDA_MAX)
+
 # Calcula el tamaño NxN de la grilla para el nivel actual
 func _tamano_grilla_actual() -> int:
 	var t: int = TAMANO_GRILLA_INICIAL + (nivel - 1) / NIVELES_POR_GRILLA
@@ -183,7 +193,8 @@ func _construir_grilla() -> void:
 	for i in range(n * n):
 		var tile = tile_escena.instantiate()
 		tile.index = i
-		tile.custom_minimum_size = Vector2(TAMANO_CELDA, TAMANO_CELDA)
+		var tamano := _tamano_celda_actual()
+		tile.custom_minimum_size = Vector2(tamano, tamano)
 		tile.tile_pressed.connect(_al_presionar_tile)
 		grilla.add_child(tile)
 		tiles.append(tile)

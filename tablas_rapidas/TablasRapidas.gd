@@ -42,6 +42,7 @@ var botones: Array = []
 # =============================================================
 # REFERENCIAS A NODOS
 # =============================================================
+@onready var boton_menu_juego:    Button = $MainVBox/InfoBar/BotonMenuJuego
 @onready var label_nivel:         Label = $MainVBox/InfoBar/LabelNivel
 @onready var label_vidas:         Label = $MainVBox/InfoBar/LabelVidas
 @onready var label_puntaje:       Label = $MainVBox/InfoBar/LabelPuntaje
@@ -61,6 +62,7 @@ func _ready() -> void:
 	# Conectar cada botón pasando su índice mediante bind()
 	for i in range(botones.size()):
 		botones[i].pressed.connect(_al_presionar_respuesta.bind(i))
+	boton_menu_juego.pressed.connect(_ir_al_menu)
 	boton_reintentar.pressed.connect(reiniciar_juego)
 	boton_menu.pressed.connect(_ir_al_menu)
 	reiniciar_juego()
