@@ -45,12 +45,11 @@ custom_minimum_size = Vector2(440, 64)
 text = "Mosaico de Memoria"
 theme_override_font_sizes/font_size = 26
 
-[node name="BotonJuego2" type="Button" parent="VBox"]
+[node name="BotonTablas" type="Button" parent="VBox"]
 layout_mode = 2
 custom_minimum_size = Vector2(440, 64)
-text = "Juego 2  (Próximamente)"
-theme_override_font_sizes/font_size = 22
-disabled = true
+text = "Tablas Rápidas"
+theme_override_font_sizes/font_size = 26
 
 [node name="BotonJuego3" type="Button" parent="VBox"]
 layout_mode = 2
