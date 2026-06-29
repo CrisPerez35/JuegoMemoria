@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://c3tp8yugs2vak"]
+
+[ext_resource type="Script" path="res://mosaico_memoria/Tile.gd" id="1_tile"]
+
+[node name="Tile" type="Button"]
+custom_minimum_size = Vector2(80, 80)
+script = ExtResource("1_tile")
